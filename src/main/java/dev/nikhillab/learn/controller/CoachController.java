@@ -22,13 +22,13 @@ public class CoachController {
 	 * @param coach
 	 */
 
-//	@Autowired
-//	public CoachController( @Qualifier("tennisCoach") Coach coach) {
-//		this.coach = coach;
-//	}
-	@Autowired
+	// @Autowired
+	// public CoachController(@Qualifier("baseBallCoach") Coach coach) {
+	// 	this.coach = coach;
+	// }
+	
 	public CoachController( Coach coach) {
-		this.coach = coach;
+	this.coach = coach;
 	}
 
 	@GetMapping("/daily/workout")
@@ -36,12 +36,12 @@ public class CoachController {
 		return coach.getDailyWorkOut();
 	}
 
-//	/**
-//	 * @param coach the coach to set
-//	 */
-//	@Autowired
-//	public void setCoach(Coach coach) {
-//		this.coach = coach;
-//	}
+	// /**
+	// * @param coach the coach to set
+	// */
+	// @Autowired
+	// public void setCoach(Coach coach) {
+	// this.coach = coach;
+	// }
 
 }

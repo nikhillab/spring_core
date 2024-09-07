@@ -1,21 +1,11 @@
-/**
- * 
- */
 package dev.nikhillab.learn.ioc;
-
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 
-/**
- * 
- */
-@Component
-public class TennisCoach implements Coach {
-	TennisCoach() {
-		System.out.println("Construct "+getClass().getSimpleName());
+public class SwimCoach  implements Coach{
+    public SwimCoach(){
+    	System.out.println("Construct "+getClass().getSimpleName());
 	}
 
 	@PostConstruct
