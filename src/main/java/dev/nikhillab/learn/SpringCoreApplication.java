@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 import dev.nikhillab.learn.jpa.InstructorDAO;
 import dev.nikhillab.learn.jpa.StudentDAO;
@@ -25,6 +26,7 @@ public class SpringCoreApplication implements CommandLineRunner {
 	InstructorDAO instructorDAO;
 
 	@Override
+	@Transactional
 	public void run(String... args) {
 		System.out.println("CommandLineRunner run method");
 
@@ -49,10 +51,10 @@ public class SpringCoreApplication implements CommandLineRunner {
 
 		// System.out.println(instructorDAO.findById(1l));
 
-		// var instructorDetails1 = new InstructorDetails("demo_channal1", "learning1");
-		// var instructor1 = new Instructor("demofirst1", "demolast1",
-		// "demo1@email.com", instructorDetails1);
-		// instructorDAO.save(instructor1);
+		var instructorDetails1 = new InstructorDetails("demo_channal1", "learning1");
+		var instructor1 = new Instructor("demofirst1", "demolast1",
+				"demo1@email.com", instructorDetails1);
+		instructorDAO.save(instructor1);
 
 		// instructorDAO.deleteById(1l);
 		// // System.out.println(instructorDAO.findAll());
@@ -67,7 +69,23 @@ public class SpringCoreApplication implements CommandLineRunner {
 		instructor.addCourses(course1);
 
 		instructorDAO.save(instructor);
-		System.out.println(instructorDAO.findAll());
+		// System.out.println(instructorDAO.findAllCourse());
+
+		// var res=instructorDAO.findById(2l);
+		// var cor=instructorDAO.findCoursesByInstructor(2l);
+		// System.out.println(cor);
+		// res.setCourses(cor);
+
+		// System.out.println(res.getCourses());
+		// System.out.println(res);
+
+		// System.out.println(instructorDAO.findInstructorByIdJoinFetchCourses(2l).getCourses());
+		
+		// res.setLastName("TEST_DEMO");
+		// instructorDAO.update(res);
+		// System.out.println(instructorDAO.findById(2l));
+
+		instructorDAO.deleteById(2l);
 
 	}
 

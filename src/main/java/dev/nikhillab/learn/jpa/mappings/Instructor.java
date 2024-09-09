@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,7 +29,7 @@ public class Instructor {
     InstructorDetails details;
 
     @OneToMany(mappedBy = "instructor", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-            CascadeType.REFRESH })
+            CascadeType.REFRESH },fetch = FetchType.LAZY)
     List<Course> courses;
 
     public Instructor() {
@@ -59,6 +60,10 @@ public class Instructor {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
     }
 
     public void addCourses(Course course) {
