@@ -1,5 +1,6 @@
 package dev.nikhillab.learn.jpa.mappings;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -10,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -30,7 +33,20 @@ public class Course {
     @JoinColumn(name = "course_id")
     List<Review> review;
 
+    @ManyToMany(fetch = FetchType.LAZY,cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @JoinTable(
+        name = "course_students_mpp",
+        joinColumns = @JoinColumn(name="course_id"),
+        inverseJoinColumns = @JoinColumn(name="student_id")
+
+    )
+    public List<CourseStudent> courseStudents = new ArrayList<>();
+
     public Course() {
+    }
+
+    public void addCourseStudent(CourseStudent courseStudent) {
+        courseStudents.add(courseStudent);
     }
 
     public Course(String title) {

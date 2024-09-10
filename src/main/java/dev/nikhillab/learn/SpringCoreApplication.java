@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import dev.nikhillab.learn.jpa.InstructorDAO;
 import dev.nikhillab.learn.jpa.StudentDAO;
 import dev.nikhillab.learn.jpa.mappings.Course;
+import dev.nikhillab.learn.jpa.mappings.CourseStudent;
 import dev.nikhillab.learn.jpa.mappings.Instructor;
 import dev.nikhillab.learn.jpa.mappings.InstructorDetails;
 
@@ -46,15 +47,15 @@ public class SpringCoreApplication implements CommandLineRunner {
 		// studentDAO.delete(3l);
 		// System.out.println(studentDAO.findAll());
 
-		var instructorDetails = new InstructorDetails("demo_channal", "learning");
-		var instructor = new Instructor("demofirst", "demolast", "demo@email.com", instructorDetails);
+		// var instructorDetails = new InstructorDetails("demo_channal", "learning");
+		// var instructor = new Instructor("demofirst", "demolast", "demo@email.com", instructorDetails);
 
 		// System.out.println(instructorDAO.findById(1l));
 
-		var instructorDetails1 = new InstructorDetails("demo_channal1", "learning1");
-		var instructor1 = new Instructor("demofirst1", "demolast1",
-				"demo1@email.com", instructorDetails1);
-		instructorDAO.save(instructor1);
+		// var instructorDetails1 = new InstructorDetails("demo_channal1", "learning1");
+		// var instructor1 = new Instructor("demofirst1", "demolast1",
+		// 		"demo1@email.com", instructorDetails1);
+		// instructorDAO.save(instructor1);
 
 		// instructorDAO.deleteById(1l);
 		// // System.out.println(instructorDAO.findAll());
@@ -63,12 +64,12 @@ public class SpringCoreApplication implements CommandLineRunner {
 		// System.out.println(insdr);
 		// System.out.println(insdr.getInstructor());
 
-		Course course = new Course("My Course0");
-		Course course1 = new Course("My Course1");
-		instructor.addCourses(course);
-		instructor.addCourses(course1);
+		// Course course = new Course("My Course0");
+		// Course course1 = new Course("My Course1");
+		// instructor.addCourses(course);
+		// instructor.addCourses(course1);
 
-		instructorDAO.save(instructor);
+		// instructorDAO.save(instructor);
 		// System.out.println(instructorDAO.findAllCourse());
 
 		// var res=instructorDAO.findById(2l);
@@ -85,7 +86,32 @@ public class SpringCoreApplication implements CommandLineRunner {
 		// instructorDAO.update(res);
 		// System.out.println(instructorDAO.findById(2l));
 
-		instructorDAO.deleteById(2l);
+		// instructorDAO.deleteById(2l);
+
+		Course course = new Course("My Course0");
+		CourseStudent courseStudent= new CourseStudent();
+		courseStudent.firstName="dedcev";
+		courseStudent.lastName="dvdv";
+		courseStudent.email="cewcwe";
+
+		CourseStudent courseStudent1= new CourseStudent();
+		courseStudent1.firstName="deddwcev";
+		courseStudent1.lastName="dvwevdv";
+		courseStudent1.email="cewcvevwe";
+
+		course.addCourseStudent(courseStudent);
+
+		course.addCourseStudent(courseStudent1);
+
+		instructorDAO.getEntityManager().persist(course);
+
+		Course course1 = new Course("My Course2");
+		
+
+		course1.addCourseStudent(courseStudent);
+
+		course1.addCourseStudent(courseStudent1);
+		instructorDAO.getEntityManager().persist(course1);
 
 	}
 
